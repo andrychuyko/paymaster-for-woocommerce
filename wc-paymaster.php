@@ -347,7 +347,7 @@ function woocommerce_paymaster()
 			  else
 			if (isset($_GET['paymaster']) AND $_GET['paymaster'] == 'success')
 				{
-				$LMI_PAYMENT_NO = $posted['LMI_PAYMENT_NO'];
+				$LMI_PAYMENT_NO = $_POST['LMI_PAYMENT_NO'];
 				$order = new WC_Order($LMI_PAYMENT_NO);
 				$order->update_status('processing', __('Платеж успешно оплачен', 'woocommerce'));
 				WC()->cart->empty_cart();
@@ -356,7 +356,7 @@ function woocommerce_paymaster()
 			  else
 			if (isset($_GET['paymaster']) AND $_GET['paymaster'] == 'fail')
 				{
-				$LMI_PAYMENT_NO = $posted['LMI_PAYMENT_NO'];
+				$LMI_PAYMENT_NO = $_POST['LMI_PAYMENT_NO'];
 				$order = new WC_Order($LMI_PAYMENT_NO);
 				$order->update_status('failed', __('Платеж не оплачен', 'woocommerce'));
 				wp_redirect($order->get_cancel_order_url());
@@ -388,6 +388,7 @@ function woocommerce_paymaster()
 			exit;
 			}
 		}
+
 
 	/**
 	 * Add the gateway to WooCommerce
